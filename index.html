@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishal Travels — Journeys Worth Remembering</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/3.4.1/tailwind.min.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style>
+        :root {
+            --ink: #0D1B2A;
+            --teal: #123B44;
+            --gold: #E3A857;
+            --ivory: #F6F1E7;
+            --coral: #D9694F;
+            --mist: #7C93A3;
+        }
+
+        .bg-ink {
+            background-color: var(--ink);
+        }
+
+        .bg-teal {
+            background-color: var(--teal);
+        }
+
+        .bg-gold {
+            background-color: var(--gold);
+        }
+
+        .bg-ivory {
+            background-color: var(--ivory);
+        }
+
+        .bg-coral {
+            background-color: var(--coral);
+        }
+
+        .text-ink {
+            color: var(--ink);
+        }
+
+        .text-teal {
+            color: var(--teal);
+        }
+
+        .text-gold {
+            color: var(--gold);
+        }
+
+        .text-ivory {
+            color: var(--ivory);
+        }
+
+        .text-coral {
+            color: var(--coral);
+        }
+
+        .text-mist {
+            color: var(--mist);
+        }
+
+        .bg-ink\/90 {
+            background-color: rgb(13 27 42 / 0.90);
+        }
+
+        .bg-ink\/98 {
+            background-color: rgb(13 27 42 / 0.98);
+        }
+
+        .bg-ink\/40 {
+            background-color: rgb(13 27 42 / 0.40);
+        }
+
+        .text-ivory\/80 {
+            color: rgb(246 241 231 / 0.80);
+        }
+
+        .text-ivory\/85 {
+            color: rgb(246 241 231 / 0.85);
+        }
+
+        .text-ivory\/90 {
+            color: rgb(246 241 231 / 0.90);
+        }
+
+        .text-ivory\/70 {
+            color: rgb(246 241 231 / 0.70);
+        }
+
+        .text-ivory\/60 {
+            color: rgb(246 241 231 / 0.60);
+        }
+
+        .text-ivory\/50 {
+            color: rgb(246 241 231 / 0.50);
+        }
+
+        .text-ivory\/40 {
+            color: rgb(246 241 231 / 0.40);
+        }
+
+        .text-ivory\/25 {
+            color: rgb(246 241 231 / 0.25);
+        }
+
+        .text-ink\/60 {
+            color: rgb(13 27 42 / 0.60);
+        }
+
+        .border-ivory\/10 {
+            border-color: rgb(246 241 231 / 0.10);
+        }
+
+        .border-ivory\/15 {
+            border-color: rgb(246 241 231 / 0.15);
+        }
+
+        .border-ivory\/25 {
+            border-color: rgb(246 241 231 / 0.25);
+        }
+
+        .border-gold\/50 {
+            border-color: rgb(227 168 87 / 0.50);
+        }
+
+        .border-ink\/10 {
+            border-color: rgb(13 27 42 / 0.10);
+        }
+
+        .border-ink\/15 {
+            border-color: rgb(13 27 42 / 0.15);
+        }
+
+        .bg-gold\/60 {
+            background-color: rgb(227 168 87 / 0.60);
+        }
+
+        .bg-ivory\/40 {
+            background-color: rgb(246 241 231 / 0.40);
+        }
+
+        .bg-ivory\/25 {
+            background-color: rgb(246 241 231 / 0.25);
+        }
+
+        .hover\\:bg-ivory:hover {
+            background-color: var(--ivory);
+        }
+
+        .hover\\:text-gold:hover {
+            color: var(--gold);
+        }
+
+        .hover\\:border-gold:hover {
+            border-color: var(--gold);
+        }
+
+        .hover\\:border-gold:hover {
+            border-color: var(--gold);
+        }
+
+        .hover\\:bg-teal:hover {
+            background-color: var(--teal);
+        }
+
+        :root {
+            color-scheme: light;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #0D1B2A;
+        }
+
+        ::selection {
+            background: #E3A857;
+            color: #0D1B2A;
+        }
+
+        /* subtle grain so flat colour blocks don't look sterile */
+        .grain::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            mix-blend-mode: overlay;
+        }
+
+        .card-tilt {
+            transform-style: preserve-3d;
+            transition: transform .15s ease-out, box-shadow .15s ease-out;
+            will-change: transform;
+        }
+
+        .card-tilt .shine {
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.28), transparent 45%);
+            opacity: 0;
+            transition: opacity .2s ease;
+            pointer-events: none;
+        }
+
+        .card-tilt:hover .shine {
+            opacity: 1;
+        }
+
+        .card-tilt .pop {
+            transition: transform .2s ease-out;
+            transform: translateZ(0);
+        }
+
+        .card-tilt:hover .pop-lg {
+            transform: translateZ(50px);
+        }
+
+        .card-tilt:hover .pop-md {
+            transform: translateZ(28px);
+        }
+
+        /* hero parallax perspective stage */
+        .stage {
+            perspective: 1200px;
+        }
+
+        .layer {
+            transform-style: preserve-3d;
+            transition: transform .12s ease-out;
+            will-change: transform;
+        }
+
+        /* flip cards (packages) */
+        .flip-scene {
+            perspective: 1400px;
+        }
+
+        .flip-card {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform .6s cubic-bezier(.4, .2, .2, 1);
+        }
+
+        .flip-card.flipped {
+            transform: rotateY(180deg);
+        }
+
+        .flip-face {
+            position: absolute;
+            inset: 0;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+
+        .flip-back {
+            transform: rotateY(180deg);
+        }
+
+        .nav-blur {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .num-underline {
+            position: relative;
+        }
+
+        .num-underline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            bottom: -6px;
+            height: 3px;
+            background: #E3A857;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform .5s cubic-bezier(.65, 0, .35, 1);
+        }
+
+        .num-underline.in-view::after {
+            transform: scaleX(1);
+        }
+
+        .fade-slide {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity .7s ease, transform .7s ease;
+        }
+
+        .fade-slide.in-view {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #globe-canvas {
+            touch-action: none;
+        }
+
+        .snap-row {
+            scroll-snap-type: x mandatory;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .snap-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .snap-card {
+            scroll-snap-align: start;
+        }
+
+        .compass::before,
+        .compass::after {
+            content: "";
+            position: absolute;
+            background: currentColor;
+        }
+
+        .compass::before {
+            width: 2px;
+            height: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .compass::after {
+            height: 2px;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .fade-slide,
+            .fade-slide.in-view,
+            .card-tilt,
+            .layer,
+            .flip-card {
+                transition: none !important;
+            }
+        }
+
+        .flip-scene:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+            border-radius: 1rem;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-ink antialiased overflow-x-hidden">
+
+    <!-- ============ NAV ============ -->
+    <header id="site-nav" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-6 lg:px-10 flex items-center justify-between h-20">
+            <a href="#top" class="font-display text-2xl text-ivory tracking-tight">Vishal<span
+                    class="text-gold">.</span>Travels</a>
+            <nav class="hidden md:flex items-center gap-9 text-sm text-ivory/80">
+                <a href="#destinations" class="hover:text-gold transition-colors">Destinations</a>
+                <a href="#packages" class="hover:text-gold transition-colors">Packages</a>
+                <a href="#why" class="hover:text-gold transition-colors">Why us</a>
+                <a href="#stories" class="hover:text-gold transition-colors">Stories</a>
+                <a href="#contact" class="hover:text-gold transition-colors">Contact</a>
+            </nav>
+            <a href="#contact"
+                class="hidden md:inline-flex items-center gap-2 bg-gold text-ink font-medium text-sm px-5 py-2.5 rounded-full hover:bg-ivory transition-colors">
+                Plan my trip
+            </a>
+            <button id="menu-btn" class="md:hidden text-ivory" aria-label="Open menu">
+                <svg width="26" height="26" viewBox="0 0 24 24" fill="none">
+                    <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-ink/98 border-t border-ivory/10">
+            <div class="px-6 py-5 flex flex-col gap-4 text-ivory/85 text-base">
+                <a href="#destinations" class="mobile-link">Destinations</a>
+                <a href="#packages" class="mobile-link">Packages</a>
+                <a href="#why" class="mobile-link">Why us</a>
+                <a href="#stories" class="mobile-link">Stories</a>
+                <a href="#contact" class="mobile-link text-gold">Plan my trip</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- ============ HERO ============ -->
+    <section id="top" class="stage relative bg-ink min-h-screen flex items-center pt-20 overflow-hidden">
+        <div class="grain absolute inset-0"></div>
+        <!-- faint horizon rings -->
+        <div class="layer absolute -right-40 top-1/2 -translate-y-1/2 w-[720px] h-[720px] rounded-full border border-ivory/5"
+            data-depth="20"></div>
+        <div class="layer absolute -right-40 top-1/2 -translate-y-1/2 w-[560px] h-[560px] rounded-full border border-ivory/5"
+            data-depth="40"></div>
+
+        <!-- floating 3D depth markers: plane trail + dashed route + compass -->
+        <svg class="layer absolute left-[8%] top-[22%] w-24 h-24 text-gold/70" data-depth="70" viewBox="0 0 24 24"
+            fill="none">
+            <path
+                d="M2 16l7.5-2.2M22 8l-7.5 2.2M9.5 13.8L14.5 10.2M9.5 13.8l1.2 6.6 2-1.1-.5-4.4M14.5 10.2l-1.2-6.6-2 1.1.5 4.4"
+                stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <svg class="layer absolute right-[6%] bottom-[16%] w-16 h-16 text-ivory/25" data-depth="55" viewBox="0 0 24 24"
+            fill="none">
+            <circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1" />
+            <path d="M12 3v3M12 18v3M3 12h3M18 12h3" stroke="currentColor" stroke-width="1" />
+            <path d="M12 12l4-6" stroke="#E3A857" stroke-width="1.4" stroke-linecap="round" />
+        </svg>
+        <div class="layer absolute left-[38%] top-[14%] w-2 h-2 rounded-full bg-gold/60" data-depth="90"></div>
+        <div class="layer absolute left-[46%] top-[70%] w-1.5 h-1.5 rounded-full bg-ivory/40" data-depth="30"></div>
+
+        <div class="relative max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center w-full">
+            <div>
+                <p class="text-mist text-sm tracking-wide mb-5">Trusted travel planning since 2007</p>
+                <h1 class="font-display text-5xl sm:text-6xl lg:text-[4.2rem] leading-[1.04] text-ivory">
+                    Go further<br> than the map<br> ever showed you.
+                </h1>
+                <p class="mt-7 text-ivory/70 text-lg max-w-md leading-relaxed">
+                    Vishal Travels designs door-to-door journeys across India and abroad —
+                    the routes, the stays, the small local details you'd never find alone.
+                </p>
+                <div class="mt-10 flex flex-wrap items-center gap-4">
+                    <a href="#destinations"
+                        class="bg-gold text-ink font-medium px-7 py-3.5 rounded-full hover:bg-ivory transition-colors">Explore
+                        destinations</a>
+                    <a href="#packages"
+                        class="inline-flex items-center gap-2 text-ivory border border-ivory/25 px-7 py-3.5 rounded-full hover:border-gold hover:text-gold transition-colors">
+                        See packages
+                    </a>
+                </div>
+                <div class="mt-14 flex items-center gap-8 text-ivory/60 text-sm">
+                    <div><span class="text-ivory font-display text-2xl">18+</span><br>years on the road</div>
+                    <div class="w-px h-10 bg-ivory/15"></div>
+                    <div><span class="text-ivory font-display text-2xl">120+</span><br>destinations mapped</div>
+                </div>
+            </div>
+
+            <div class="relative h-[420px] sm:h-[520px] lg:h-[600px]">
+                <canvas id="globe-canvas" class="absolute inset-0 w-full h-full"></canvas>
+            </div>
+        </div>
+
+        <a href="#destinations"
+            class="absolute bottom-8 left-1/2 -translate-x-1/2 text-ivory/50 hover:text-gold transition-colors">
+            <svg width="22" height="34" viewBox="0 0 22 34" fill="none">
+                <rect x="1" y="1" width="20" height="32" rx="10" stroke="currentColor" stroke-width="1.4" />
+                <circle cx="11" cy="10" r="2.4" fill="currentColor" />
+            </svg>
+        </a>
+    </section>
+
+    <!-- ============ DESTINATIONS ============ -->
+    <section id="destinations" class="bg-ivory py-28 px-6 lg:px-10">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14 fade-slide">
+                <h2 class="font-display text-4xl sm:text-5xl max-w-lg leading-tight">Six places our travellers keep
+                    going back
+                    to</h2>
+                <p class="text-mist max-w-sm">Tilt the cards — each route is built around the season, the terrain, and
+                    what's
+                    actually worth doing there.</p>
+            </div>
+
+            <div id="dest-grid" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- cards injected with data below via template -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ WHY US ============ -->
+    <section id="why" class="relative bg-teal py-28 px-6 lg:px-10 overflow-hidden">
+        <div class="grain absolute inset-0"></div>
+        <div class="relative max-w-7xl mx-auto">
+            <div class="grid lg:grid-cols-2 gap-16 items-start">
+                <div class="fade-slide">
+                    <h2 class="font-display text-4xl sm:text-5xl text-ivory leading-tight">Planning a trip shouldn't
+                        feel like a
+                        second job</h2>
+                    <p class="mt-6 text-ivory/70 text-lg leading-relaxed max-w-md">
+                        We've run this agency out of Gujarat for eighteen years. Every itinerary is
+                        built by someone who has actually stood where you're about to go —
+                        not assembled from a template.
+                    </p>
+                    <div class="mt-10 space-y-5">
+                        <div class="flex gap-4">
+                            <div
+                                class="w-9 h-9 rounded-full border border-gold/50 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 12l5 5L20 6" stroke="#E3A857" stroke-width="2.2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <p class="text-ivory/80">One point of contact from booking to landing back home.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-9 h-9 rounded-full border border-gold/50 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 12l5 5L20 6" stroke="#E3A857" stroke-width="2.2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <p class="text-ivory/80">Local guides and drivers we've worked with for years, not agencies
+                                we outsource
+                                to.</p>
+                        </div>
+                        <div class="flex gap-4">
+                            <div
+                                class="w-9 h-9 rounded-full border border-gold/50 flex items-center justify-center shrink-0 mt-0.5">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                                    <path d="M4 12l5 5L20 6" stroke="#E3A857" stroke-width="2.2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                            </div>
+                            <p class="text-ivory/80">Fixed pricing before you leave — no resort upsells once you've
+                                landed.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-2 gap-5">
+                    <div class="stat-box bg-ink/40 border border-ivory/10 rounded-2xl p-8">
+                        <p class="font-display text-4xl text-gold num-underline" data-count="15000" data-suffix="+">0
+                        </p>
+                        <p class="text-ivory/60 text-sm mt-3">Travellers guided</p>
+                    </div>
+                    <div class="stat-box bg-ink/40 border border-ivory/10 rounded-2xl p-8">
+                        <p class="font-display text-4xl text-gold num-underline" data-count="120" data-suffix="+">0</p>
+                        <p class="text-ivory/60 text-sm mt-3">Destinations covered</p>
+                    </div>
+                    <div class="stat-box bg-ink/40 border border-ivory/10 rounded-2xl p-8">
+                        <p class="font-display text-4xl text-gold num-underline" data-count="18" data-suffix=" yrs">0
+                        </p>
+                        <p class="text-ivory/60 text-sm mt-3">In business</p>
+                    </div>
+                    <div class="stat-box bg-ink/40 border border-ivory/10 rounded-2xl p-8">
+                        <p class="font-display text-4xl text-gold num-underline" data-count="4.9" data-suffix="/5"
+                            data-decimal="1">
+                            0</p>
+                        <p class="text-ivory/60 text-sm mt-3">Average rating</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ PACKAGES ============ -->
+    <section id="packages" class="bg-ivory py-28 overflow-hidden">
+        <div
+            class="max-w-7xl mx-auto px-6 lg:px-10 flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12 fade-slide">
+            <h2 class="font-display text-4xl sm:text-5xl max-w-lg leading-tight">Packages people actually book</h2>
+            <div class="flex gap-3">
+                <button id="pk-prev"
+                    class="w-11 h-11 rounded-full border border-ink/15 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                    aria-label="Previous">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button id="pk-next"
+                    class="w-11 h-11 rounded-full border border-ink/15 flex items-center justify-center hover:border-gold hover:text-gold transition-colors"
+                    aria-label="Next">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                        <path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+
+        <div id="pk-row" class="snap-row flex gap-6 overflow-x-auto px-6 lg:px-10 pb-4">
+            <!-- package cards injected -->
+        </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section id="stories" class="relative bg-ink py-28 px-6 lg:px-10 overflow-hidden">
+        <div class="grain absolute inset-0"></div>
+        <div class="relative max-w-3xl mx-auto text-center">
+            <p class="text-mist text-sm mb-4">What travellers say</p>
+            <div id="quote-wrap" class="min-h-[220px] flex items-center justify-center">
+                <!-- quotes injected -->
+            </div>
+            <div id="quote-dots" class="flex justify-center gap-2 mt-8"></div>
+        </div>
+    </section>
+
+    <!-- ============ CONTACT / CTA ============ -->
+    <section id="contact" class="bg-coral relative py-28 px-6 lg:px-10 overflow-hidden">
+        <div class="grain absolute inset-0"></div>
+        <div class="relative max-w-7xl mx-auto grid lg:grid-cols-2 gap-16">
+            <div class="fade-slide">
+                <h2 class="font-display text-4xl sm:text-5xl text-ivory leading-tight">Tell us where,<br>we'll handle
+                    how.</h2>
+                <p class="mt-6 text-ivory/85 text-lg max-w-md">
+                    Send a few details and one of our travel designers will call you within a day
+                    with a route, a rough budget, and honest advice on timing.
+                </p>
+                <div class="mt-10 space-y-3 text-ivory/90">
+                    <p class="flex items-center gap-3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path
+                                d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"
+                                stroke="currentColor" stroke-width="1.6" />
+                        </svg> +91 98765 43210</p>
+                    <p class="flex items-center gap-3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <rect x="2" y="4" width="20" height="16" rx="2" stroke="currentColor" stroke-width="1.6" />
+                            <path d="M2 7l10 6 10-6" stroke="currentColor" stroke-width="1.6" />
+                        </svg> hello@vishaltravels.in</p>
+                    <p class="flex items-center gap-3"><svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                            <path d="M21 10c0 6-9 12-9 12s-9-6-9-12a9 9 0 1118 0z" stroke="currentColor"
+                                stroke-width="1.6" />
+                            <circle cx="12" cy="10" r="3" stroke="currentColor" stroke-width="1.6" />
+                        </svg> Anand, Gujarat</p>
+                </div>
+            </div>
+
+            <div class="bg-ivory rounded-3xl p-8 sm:p-10 fade-slide">
+                <form id="contact-form" class="space-y-5">
+                    <div>
+                        <label for="full-name" class="block text-sm text-ink/60 mb-1.5">Full name</label>
+                        <input id="full-name" name="fullName" autocomplete="name" required type="text"
+                            class="w-full bg-transparent border border-ink/15 rounded-xl px-4 py-3 focus:outline-none focus:border-coral"
+                            placeholder="Your name">
+                    </div>
+                    <div class="grid sm:grid-cols-2 gap-5">
+                        <div>
+                            <label for="phone" class="block text-sm text-ink/60 mb-1.5">Phone</label>
+                            <input id="phone" name="phone" autocomplete="tel" inputmode="tel"
+                                pattern="[+]?[0-9 ()-]{7,20}" required type="tel"
+                                class="w-full bg-transparent border border-ink/15 rounded-xl px-4 py-3 focus:outline-none focus:border-coral"
+                                placeholder="+91">
+                        </div>
+                        <div>
+                            <label for="destination" class="block text-sm text-ink/60 mb-1.5">Destination</label>
+                            <select id="destination" name="destination"
+                                class="w-full bg-transparent border border-ink/15 rounded-xl px-4 py-3 focus:outline-none focus:border-coral">
+                                <option>Not sure yet</option>
+                                <option>Kashmir</option>
+                                <option>Kerala</option>
+                                <option>Rajasthan</option>
+                                <option>Goa</option>
+                                <option>Bali</option>
+                                <option>Dubai</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="trip-details" class="block text-sm text-ink/60 mb-1.5">What are you
+                            picturing?</label>
+                        <textarea id="trip-details" name="tripDetails" rows="3"
+                            class="w-full bg-transparent border border-ink/15 rounded-xl px-4 py-3 focus:outline-none focus:border-coral"
+                            placeholder="Dates, people travelling, budget — whatever you know so far"></textarea>
+                    </div>
+                    <button type="submit"
+                        class="w-full bg-ink text-ivory font-medium py-3.5 rounded-xl hover:bg-teal transition-colors">Request
+                        a
+                        callback</button>
+                </form>
+                <div id="form-success" class="hidden text-center py-10">
+                    <p class="font-display text-2xl mb-2">Got it.</p>
+                    <p class="text-ink/60">A travel designer will call you within a day.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ FOOTER ============ -->
+    <footer class="bg-ink border-t border-ivory/10 py-14 px-6 lg:px-10">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between gap-8">
+            <div>
+                <p class="font-display text-2xl text-ivory">Vishal<span class="text-gold">.</span>Travels</p>
+                <p class="text-ivory/50 text-sm mt-2 max-w-xs">Independent travel planning, run from Anand, Gujarat
+                    since 2007.
+                </p>
+            </div>
+            <div class="flex gap-14 text-sm text-ivory/60">
+                <div class="space-y-2">
+                    <p class="text-ivory/40 mb-1">Explore</p>
+                    <a href="#destinations" class="block hover:text-gold">Destinations</a>
+                    <a href="#packages" class="block hover:text-gold">Packages</a>
+                </div>
+                <div class="space-y-2">
+                    <p class="text-ivory/40 mb-1">Company</p>
+                    <a href="#why" class="block hover:text-gold">Why us</a>
+                    <a href="#contact" class="block hover:text-gold">Contact</a>
+                </div>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto mt-10 pt-6 border-t border-ivory/10 text-ivory/40 text-xs flex flex-col sm:flex-row justify-between gap-2">
+            <p>© 2026 Vishal Travels. All rights reserved.</p>
+            <p>Licensed travel agency · Gujarat, India</p>
+        </div>
+    </footer>
+
+    <script>
+        /* ---------- NAV ---------- */
+        const nav = document.getElementById('site-nav');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 40) {
+                nav.classList.add('bg-ink/90', 'nav-blur', 'shadow-lg');
+            } else {
+                nav.classList.remove('bg-ink/90', 'nav-blur', 'shadow-lg');
+            }
+        });
+        const menuBtn = document.getElementById('menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        menuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+        document.querySelectorAll('.mobile-link').forEach(a => a.addEventListener('click', () => mobileMenu.classList.add('hidden')));
+
+        /* ---------- SCROLL REVEAL ---------- */
+        const revealEls = document.querySelectorAll('.fade-slide, .num-underline');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in-view'); });
+        }, { threshold: 0.2 });
+        revealEls.forEach(el => revealObserver.observe(el));
+
+        /* ---------- COUNT-UP STATS ---------- */
+        const countEls = document.querySelectorAll('[data-count]');
+        const countObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                const el = entry.target;
+                const target = parseFloat(el.dataset.count);
+                const suffix = el.dataset.suffix || '';
+                const decimals = parseInt(el.dataset.decimal || '0', 10);
+                const duration = 1400;
+                const start = performance.now();
+                function tick(now) {
+                    const p = Math.min((now - start) / duration, 1);
+                    const eased = 1 - Math.pow(1 - p, 3);
+                    const val = target * eased;
+                    el.textContent = (decimals ? val.toFixed(decimals) : Math.round(val).toLocaleString()) + suffix;
+                    if (p < 1) requestAnimationFrame(tick);
+                }
+                requestAnimationFrame(tick);
+                countObserver.unobserve(el);
+            });
+        }, { threshold: 0.4 });
+        countEls.forEach(el => countObserver.observe(el));
+
+        /* ---------- DESTINATION DATA + CARDS ---------- */
+        const destinations = [
+            { name: 'Kashmir', tag: 'Valleys & houseboats', price: '₹32,000', to: '#0F3D3E,#1C5C57', ill: 'mountains' },
+            { name: 'Kerala', tag: 'Backwaters & spice hills', price: '₹24,500', to: '#0E4A3A,#2E7D5B', ill: 'palms' },
+            { name: 'Rajasthan', tag: 'Forts & desert nights', price: '₹27,900', to: '#7A3B1E,#C4703A', ill: 'desert' },
+            { name: 'Goa', tag: 'Coastline & old towns', price: '₹19,900', to: '#0B4A5C,#1E8FA6', ill: 'waves' },
+            { name: 'Bali', tag: 'Rice terraces & temples', price: '₹45,000', to: '#234A2E,#5C8A4A', ill: 'terrace' },
+            { name: 'Dubai', tag: 'Skyline & desert safari', price: '₹52,000', to: '#3A2E1C,#B98A3E', ill: 'skyline' },
+        ];
+
+        function illustration(kind) {
+            switch (kind) {
+                case 'mountains':
+                    return `<svg viewBox="0 0 300 160" class="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+        <polygon points="0,160 60,60 100,110 150,40 210,110 260,70 300,160" fill="rgba(255,255,255,0.10)"/>
+        <polygon points="0,160 90,90 150,130 220,80 300,140 300,160" fill="rgba(255,255,255,0.16)"/>
+        <circle cx="240" cy="35" r="18" fill="rgba(255,255,255,0.22)"/>
+      </svg>`;
+                case 'palms':
+                    return `<svg viewBox="0 0 300 160" class="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+        <path d="M40 160 C40 100 55 70 55 70" stroke="rgba(255,255,255,0.28)" stroke-width="5" fill="none"/>
+        <path d="M55 70 C30 55 15 55 5 65" stroke="rgba(255,255,255,0.28)" stroke-width="4" fill="none"/>
+        <path d="M55 70 C40 50 30 45 15 45" stroke="rgba(255,255,255,0.28)" stroke-width="4" fill="none"/>
+        <path d="M55 70 C75 55 90 55 100 65" stroke="rgba(255,255,255,0.28)" stroke-width="4" fill="none"/>
+        <path d="M0 160 Q150 120 300 160" fill="rgba(255,255,255,0.12)"/>
+      </svg>`;
+                case 'desert':
+                    return `<svg viewBox="0 0 300 160" class="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+        <path d="M0 130 Q80 90 160 130 T300 120 V160 H0 Z" fill="rgba(255,255,255,0.14)"/>
+        <path d="M0 150 Q100 120 200 150 T300 140 V160 H0 Z" fill="rgba(255,255,255,0.10)"/>
+        <circle cx="60" cy="40" r="16" fill="rgba(255,255,255,0.22)"/>
+      </svg>`;
+                case 'waves':
+                    return `<svg viewBox="0 0 300 160" class="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+        <path d="M0 110 Q40 90 80 110 T160 110 T240 110 T300 110 V160 H0 Z" fill="rgba(255,255,255,0.14)"/>
+        <path d="M0 130 Q40 115 80 130 T160 130 T240 130 T300 130 V160 H0 Z" fill="rgba(255,255,255,0.10)"/>
+      </svg>`;
+                case 'terrace':
+                    return `<svg viewBox="0 0 300 160" class="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+        <path d="M0 160 L0 120 L300 90 L300 160 Z" fill="rgba(255,255,255,0.10)"/>
+        <path d="M0 160 L0 140 L300 115 L300 160 Z" fill="rgba(255,255,255,0.16)"/>
+        <path d="M100 60 L130 90 L100 100 L70 90 Z" fill="rgba(255,255,255,0.2)"/>
+      </svg>`;
+                case 'skyline':
+                    return `<svg viewBox="0 0 300 160" class="absolute inset-0 w-full h-full opacity-80" preserveAspectRatio="none">
+        <rect x="30" y="60" width="18" height="100" fill="rgba(255,255,255,0.14)"/>
+        <rect x="60" y="40" width="14" height="120" fill="rgba(255,255,255,0.18)"/>
+        <polygon points="130,20 145,60 115,60" fill="rgba(255,255,255,0.22)"/>
+        <rect x="123" y="60" width="14" height="100" fill="rgba(255,255,255,0.16)"/>
+        <rect x="180" y="80" width="16" height="80" fill="rgba(255,255,255,0.12)"/>
+      </svg>`;
+                default: return '';
+            }
+        }
+
+        const destGrid = document.getElementById('dest-grid');
+        destinations.forEach(d => {
+            const card = document.createElement('div');
+            card.className = 'card-tilt relative rounded-2xl overflow-hidden h-72 p-6 flex flex-col justify-end cursor-pointer';
+            card.style.background = `linear-gradient(160deg, ${d.to.split(',')[0]}, ${d.to.split(',')[1]})`;
+            card.innerHTML = `
+    ${illustration(d.ill)}
+    <div class="shine"></div>
+    <div class="relative pop pop-lg">
+      <p class="text-ivory/70 text-xs mb-1 pop pop-md">${d.tag}</p>
+      <h3 class="font-display text-2xl text-ivory">${d.name}</h3>
+      <p class="text-gold text-sm mt-2">${d.price} <span class="text-ivory/50">per person</span></p>
+    </div>`;
+            destGrid.appendChild(card);
+        });
+
+        /* tilt effect for any .card-tilt */
+        function attachTilt(el, intensity = 10) {
+            el.addEventListener('mousemove', (e) => {
+                const r = el.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width;
+                const y = (e.clientY - r.top) / r.height;
+                const rx = (0.5 - y) * intensity;
+                const ry = (x - 0.5) * intensity;
+                el.style.transform = `perspective(700px) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(6px)`;
+                el.style.setProperty('--mx', `${x * 100}%`);
+                el.style.setProperty('--my', `${y * 100}%`);
+            });
+            el.addEventListener('mouseleave', () => {
+                el.style.transform = 'perspective(700px) rotateX(0) rotateY(0) translateZ(0)';
+            });
+        }
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            document.querySelectorAll('#dest-grid .card-tilt').forEach(el => attachTilt(el, 9));
+        }
+
+        /* ---------- HERO PARALLAX LAYERS (3D depth via translateZ/translate) ---------- */
+        const heroSection = document.getElementById('top');
+        const layers = heroSection.querySelectorAll('.layer');
+        if (window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+            heroSection.addEventListener('mousemove', (e) => {
+                const r = heroSection.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                layers.forEach(layer => {
+                    const depth = parseFloat(layer.dataset.depth || 40);
+                    const moveX = x * depth;
+                    const moveY = y * depth;
+                    layer.style.transform = `translate3d(${moveX}px, ${moveY}px, ${depth}px)`;
+                });
+            });
+            heroSection.addEventListener('mouseleave', () => {
+                layers.forEach(layer => {
+                    layer.style.transform = 'translate3d(0,0,0)';
+                });
+            });
+        }
+
+        /* ---------- PACKAGES ---------- */
+        const packages = [
+            { name: 'Kashmir Escape', days: '6 days / 5 nights', price: '₹32,000', points: ['Srinagar houseboat stay', 'Gulmarg gondola ride', 'Pahalgam valley drive'] },
+            { name: 'Kerala Backwaters', days: '5 days / 4 nights', price: '₹24,500', points: ['Alleppey houseboat', 'Munnar tea estates', 'Kochi old town walk'] },
+            { name: 'Royal Rajasthan', days: '7 days / 6 nights', price: '₹27,900', points: ['Jaipur, Jodhpur, Udaipur', 'Desert camp in Jaisalmer', 'Heritage haveli stays'] },
+            { name: 'Bali Getaway', days: '6 days / 5 nights', price: '₹45,000', points: ['Ubud rice terraces', 'Uluwatu sunset temple', 'Nusa Penida day trip'] },
+            { name: 'Dubai Highlights', days: '5 days / 4 nights', price: '₹52,000', points: ['Desert safari & BBQ', 'Burj Khalifa access', 'Dhow cruise dinner'] },
+        ];
+
+        const pkRow = document.getElementById('pk-row');
+        packages.forEach(p => {
+            const scene = document.createElement('div');
+            scene.className = 'flip-scene snap-card shrink-0 w-[300px] sm:w-[340px] h-[340px]';
+            scene.innerHTML = `
+    <div class="flip-card">
+      <div class="flip-face bg-white rounded-2xl border border-ink/10 p-7 flex flex-col">
+        <p class="text-mist text-xs">${p.days}</p>
+        <h3 class="font-display text-2xl mt-2">${p.name}</h3>
+        <p class="mt-4 text-sm text-ink/60 flex-1">Tap the card to see what's included.</p>
+        <div class="pt-5 border-t border-ink/10 flex items-center justify-between">
+          <p class="font-display text-xl">${p.price}</p>
+          <span class="text-sm font-medium text-coral">Flip for details ↻</span>
+        </div>
+      </div>
+      <div class="flip-face flip-back bg-teal rounded-2xl p-7 flex flex-col">
+        <p class="text-gold text-xs">Included</p>
+        <h3 class="font-display text-xl mt-1 text-ivory">${p.name}</h3>
+        <ul class="mt-4 space-y-2.5 text-sm text-ivory/80 flex-1">
+          ${p.points.map(pt => `<li class="flex gap-2"><span class="text-gold mt-1">—</span>${pt}</li>`).join('')}
+        </ul>
+        <a href="#contact" class="mt-2 inline-block text-center bg-gold text-ink text-sm font-medium py-2.5 rounded-xl hover:bg-ivory transition-colors">Enquire about this trip</a>
+      </div>
+    </div>`;
+            const flipEl = scene.querySelector('.flip-card');
+            scene.setAttribute('role', 'button');
+            scene.setAttribute('tabindex', '0');
+            scene.setAttribute('aria-label', `Show details for ${p.name}`);
+
+            const toggleFlip = (e) => {
+                if (e.target.closest('a, button, input, select, textarea')) return;
+                flipEl.classList.toggle('flipped');
+            };
+
+            scene.addEventListener('click', toggleFlip);
+            scene.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    flipEl.classList.toggle('flipped');
+                }
+            });
+            pkRow.appendChild(scene);
+        });
+
+        document.getElementById('pk-next').addEventListener('click', () => pkRow.scrollBy({ left: 340, behavior: 'smooth' }));
+        document.getElementById('pk-prev').addEventListener('click', () => pkRow.scrollBy({ left: -340, behavior: 'smooth' }));
+
+        /* ---------- TESTIMONIALS ---------- */
+        const quotes = [
+            { text: 'We told them the budget and the dates and nothing else. Every detail after that — the houseboat, the driver, the little tea stall stop in Pahalgam — was exactly right.', name: 'Rina Shah', trip: 'Kashmir, 2025' },
+            { text: 'Booked Bali three weeks before travelling and they still got us a villa with a rice-field view. Communication was quick even across the time difference.', name: 'Manav Trivedi', trip: 'Bali, 2024' },
+            { text: 'Our parents wanted Rajasthan without the running-around. Vishal Travels planned it at a pace they could actually enjoy.', name: 'Priya & Arjun Desai', trip: 'Rajasthan, 2025' },
+        ];
+        const quoteWrap = document.getElementById('quote-wrap');
+        const dotsWrap = document.getElementById('quote-dots');
+        let qIndex = 0;
+
+        function renderQuote(i) {
+            const q = quotes[i];
+            quoteWrap.innerHTML = `
+    <div class="fade-slide in-view">
+      <p class="font-display text-2xl sm:text-3xl text-ivory leading-snug">"${q.text}"</p>
+      <p class="mt-6 text-gold text-sm">${q.name} · ${q.trip}</p>
+    </div>`;
+            [...dotsWrap.children].forEach((d, idx) => {
+                d.classList.toggle('bg-gold', idx === i);
+                d.classList.toggle('bg-ivory/25', idx !== i);
+            });
+        }
+        quotes.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'w-2.5 h-2.5 rounded-full bg-ivory/25 transition-colors';
+            dot.addEventListener('click', () => { qIndex = i; renderQuote(qIndex); });
+            dotsWrap.appendChild(dot);
+        });
+        renderQuote(0);
+        setInterval(() => { qIndex = (qIndex + 1) % quotes.length; renderQuote(qIndex); }, 5500);
+
+        /* ---------- CONTACT FORM ---------- */
+        const contactForm = document.getElementById('contact-form');
+        const formSuccess = document.getElementById('form-success');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            if (!contactForm.checkValidity()) {
+                contactForm.reportValidity();
+                return;
+            }
+
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Sending...';
+
+            // Demo-only frontend flow. Connect this submit handler to your backend/API
+            // when the real enquiry endpoint is ready.
+            window.setTimeout(() => {
+                contactForm.reset();
+                contactForm.classList.add('hidden');
+                formSuccess.classList.remove('hidden');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Request a callback';
+            }, 500);
+        });
+
+        /* ---------- THREE.JS HERO GLOBE ---------- */
+        (function initGlobe() {
+            const canvas = document.getElementById('globe-canvas');
+            const parent = canvas.parentElement;
+
+            if (!canvas || !parent || typeof THREE === 'undefined') {
+                return;
+            }
+
+            let renderer;
+            try {
+                renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+            } catch (error) {
+                console.warn('3D globe could not be initialized:', error);
+                canvas.style.display = 'none';
+                return;
+            }
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 100);
+            camera.position.set(0, 0, 7);
+
+            function resize() {
+                const w = parent.clientWidth, h = parent.clientHeight;
+                renderer.setSize(w, h, false);
+                renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                camera.aspect = w / h;
+                camera.updateProjectionMatrix();
+            }
+            resize();
+            window.addEventListener('resize', resize);
+
+            const group = new THREE.Group();
+            scene.add(group);
+
+            // dotted sphere (wireframe-of-dots look via IcosahedronGeometry points)
+            const sphereGeo = new THREE.IcosahedronGeometry(2.1, 4);
+            const pointsMat = new THREE.PointsMaterial({ color: 0xE3A857, size: 0.028, transparent: true, opacity: 0.85 });
+            const points = new THREE.Points(sphereGeo, pointsMat);
+            group.add(points);
+
+            // faint wire shell
+            const wireGeo = new THREE.IcosahedronGeometry(2.1, 2);
+            const wireMat = new THREE.MeshBasicMaterial({ color: 0x7C93A3, wireframe: true, transparent: true, opacity: 0.12 });
+            const wire = new THREE.Mesh(wireGeo, wireMat);
+            group.add(wire);
+
+            // orbit rings
+            [2.6, 3.05].forEach((r, i) => {
+                const ringGeo = new THREE.TorusGeometry(r, 0.006, 8, 120);
+                const ringMat = new THREE.MeshBasicMaterial({ color: 0xF6F1E7, transparent: true, opacity: 0.15 });
+                const ring = new THREE.Mesh(ringGeo, ringMat);
+                ring.rotation.x = Math.PI / 2 + (i * 0.3);
+                ring.rotation.y = i * 0.5;
+                group.add(ring);
+            });
+
+            // destination markers on sphere surface
+            function latLngToVec3(lat, lng, radius) {
+                const phi = (90 - lat) * (Math.PI / 180);
+                const theta = (lng + 180) * (Math.PI / 180);
+                return new THREE.Vector3(
+                    -radius * Math.sin(phi) * Math.cos(theta),
+                    radius * Math.cos(phi),
+                    radius * Math.sin(phi) * Math.sin(theta)
+                );
+            }
+            const markerCoords = [[34, 75], [10, 76], [27, 73], [15, 74], [-8, 115], [25, 55]];
+            const markerGeo = new THREE.SphereGeometry(0.045, 12, 12);
+            const markerMat = new THREE.MeshBasicMaterial({ color: 0xD9694F });
+            markerCoords.forEach(([lat, lng]) => {
+                const m = new THREE.Mesh(markerGeo, markerMat);
+                m.position.copy(latLngToVec3(lat, lng, 2.13));
+                group.add(m);
+                const glowGeo = new THREE.SphereGeometry(0.09, 12, 12);
+                const glowMat = new THREE.MeshBasicMaterial({ color: 0xD9694F, transparent: true, opacity: 0.25 });
+                const glow = new THREE.Mesh(glowGeo, glowMat);
+                glow.position.copy(m.position);
+                group.add(glow);
+            });
+
+            let targetRotX = 0, targetRotY = 0;
+            parent.addEventListener('mousemove', (e) => {
+                const r = parent.getBoundingClientRect();
+                const x = (e.clientX - r.left) / r.width - 0.5;
+                const y = (e.clientY - r.top) / r.height - 0.5;
+                targetRotY = x * 0.6;
+                targetRotX = y * 0.3;
+            });
+
+            let autoRot = 0;
+            function animate() {
+                requestAnimationFrame(animate);
+                autoRot += 0.0022;
+                const desiredY = autoRot + targetRotY;
+                group.rotation.y += (desiredY - group.rotation.y) * 0.04;
+                group.rotation.x += (targetRotX - group.rotation.x) * 0.04;
+                renderer.render(scene, camera);
+            }
+            animate();
+        })();
+    </script>
+</body>
+
+</html>
